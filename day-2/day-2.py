@@ -43,14 +43,11 @@ def get_max_color_result(data_set):
                 green = int(green_split[0])
         elif cube.__contains__('blue'):
             blue_split = cube.split(' ')
-            # print(type(int(blue_split[0])))
-            # print(type(blue))
 
             if int(blue_split[0]) > blue:
                 blue = int(blue_split[0])
 
     return {'red': red, 'green': green, 'blue': blue}
-        
 def solve_part_1(games):
     red_needed = 12
     green_needed = 13
@@ -75,9 +72,24 @@ def solve_part_1(games):
     
     return possible_sum
 
+def solve_part_2(games):
+    total_power = 0
+
+    for game in games:
+
+        max_color_results = get_max_color_result(game[1].strip().split(';'))
+
+        power = max_color_results['red'] * max_color_results['green'] * max_color_results['blue']
+
+        print(power)
+        total_power = total_power + power
+    
+    return total_power
 
 games_list = list_games('./day-2-input.txt')
 
 
 
 print(solve_part_1(games_list))
+
+print(solve_part_2(games_list))
