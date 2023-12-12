@@ -25,7 +25,7 @@ def calculate_distance(button_hold_time, race_time):
 max_race_times = list_races('./day-6-input.txt')['max race times']
 distance_records = list_races('./day-6-input.txt')['distance records']
 
-possible_wins_list = []
+possible_wins_list_part1 = []
 for i, race in enumerate(max_race_times):
 
     race_time = int(race)
@@ -41,15 +41,32 @@ for i, race in enumerate(max_race_times):
 
         button_hold_time = button_hold_time - 1
 
-    possible_wins_list.append(possibile_wins)
+    possible_wins_list_part1.append(possibile_wins)
 
-margin_of_error = 0
+margin_of_error_part1 = 0
 
-for i, wins in enumerate(possible_wins_list):
+for i, wins in enumerate(possible_wins_list_part1):
     if i == 0:
-        margin_of_error = possible_wins_list[i]
+        margin_of_error_part1 = possible_wins_list_part1[i]
     else:
-        margin_of_error = margin_of_error * possible_wins_list[i]
+        margin_of_error_part1 = margin_of_error_part1 * possible_wins_list_part1[i]
 
-print(margin_of_error)
+possible_wins_list_part2 = []
+possibile_wins2 = 0
+
+race_time2 = 54946592
+button_hold_time2 = 54946592
+distance_record2 = 302147610291404
+
+while button_hold_time2 >= 0:
+    distance2 = calculate_distance(button_hold_time2, race_time2)
+
+    if distance2 > distance_record2:
+        possibile_wins2 = possibile_wins2 + 1
+    
+    button_hold_time2 = button_hold_time2 - 1
+
+
+print(margin_of_error_part1)
+print(possibile_wins2)
 
